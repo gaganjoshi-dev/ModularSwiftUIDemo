@@ -26,43 +26,13 @@ PassthroughSubject used for navigation event handling
 Coordinator handles deep links and route transitions
 🛠 Technologies Used
 
-Layer    Tech Used
-UI    SwiftUI
-Architecture    MVVM + Coordinator
-Networking    URLSession via URLSessionProtocol
-JSON Decoding    JSONDecoderService + error diagnostics
-Async    async/await
-Navigation    NavigationStack, NavigationPath, Combine
-Fallback Strategy    Remote → Local
-📂 Folder Structure (High-Level)
+🔗 Author & Contact
 
-├── Views/
-│   ├── ComponentListView.swift
-│   ├── CarouselCardView.swift
-│   ├── HeaderCellView.swift
-│   └── ActionCellView.swift
-├── ViewModels/
-│   └── LegalPrivacyViewModel.swift
-├── Coordinator/
-│   └── LegalPrivacyCoordinator.swift
-├── Models/
-│   └── LegalPrivacyData.swift
-├── Repositories/
-│   ├── ComponentRepository.swift
-│   ├── LocalRepository.swift
-│   └── RemoteRepository.swift
-├── Services/
-│   ├── ComponentService.swift
-│   └── DecoderService.swift
-├── Network/
-│   ├── NetworkManager.swift
-│   ├── APIConfig.swift
-│   ├── NetworkError.swift
-│   └── URLSessionProtocol.swift
-├── Shared/
-│   └── ComponentError.swift
-🧪 Testing Ideas (Not yet included)
+Gagan Joshi
+🔹 https://www.linkedin.com/in/gaganjoshi-dev/
 
-ViewModel logic using mock ComponentService
-Repository fallbacks via injected fake RemoteRepository
-Network layer tests using mock URLSessionProtocol
+⚠️ Disclaimer
+
+Copyright (c) 2025 Gagan Joshi
+
+
