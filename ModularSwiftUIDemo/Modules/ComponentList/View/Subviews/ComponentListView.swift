@@ -15,9 +15,12 @@ struct ComponentListView: View {
         List(components, id: \.id) { component in
             switch component.type {
             case .header:
-                HeaderCellView(title: component.title)
+                HeaderCellView(title: component.title).background(component.hasBackground ? Color(.systemGray6) : Color.clear)
             case .actionCell:
-                ActionCellView(title: component.title)
+                ActionCellView(title: component.title,imageUrl: component.imageUrl) {
+                        navigationPublisher.send(.open(component.linkDestination))
+                }
+
             case .imageCarousel:
                 if let items = component.items, !items.isEmpty {
                     ImageCarouselCellView(items: items,navigationPublisher: navigationPublisher)
@@ -26,7 +29,7 @@ struct ComponentListView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.plain)
     }
 }
 

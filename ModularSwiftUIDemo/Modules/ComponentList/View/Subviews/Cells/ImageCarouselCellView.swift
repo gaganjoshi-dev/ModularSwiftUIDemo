@@ -11,17 +11,15 @@ import Combine
 struct ImageCarouselCellView: View {
     let items: [CarouselItem]
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
-
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
+            LazyHGrid(rows: [GridItem(.flexible())]) {
                 ForEach(items.indices, id: \.self) { index in
-                    let item = items[index]
-                    CarouselCardView(item: item,navigationPublisher: navigationPublisher)
+                    CarouselCardView(item: items[index], navigationPublisher: navigationPublisher)
                 }
             }
-            .padding(.horizontal)
         }
-        .frame(height: 220)
+        .frame(height: 350)
     }
 }

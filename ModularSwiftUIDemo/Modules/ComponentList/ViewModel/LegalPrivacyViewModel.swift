@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum LinkDestination {
+    case deepLink(URL)
+    case webLink(URL)
+    case unknown
+}
 
 enum ComponentListState {
     case loading
@@ -16,11 +21,8 @@ enum ComponentListState {
 
 
 final class LegalPrivacyViewModel: ObservableObject {
-
     private let componentService: ComponentServiceProtocol
-
     @Published private(set) var state: ComponentListState = .loading
-
     init(componentService: ComponentServiceProtocol) {
         self.componentService = componentService
     }
@@ -39,8 +41,6 @@ final class LegalPrivacyViewModel: ObservableObject {
 }
 
 
-
-
 protocol ComponentCellViewModelProtocol {
     var title: String { get }
     var type: ComponentType { get }
@@ -49,9 +49,6 @@ protocol ComponentCellViewModelProtocol {
     var deeplink: URL? { get }
     var weblink: URL? { get }
 }
-
-
-
 
 struct ComponentCellViewModel: Identifiable  {
     
@@ -65,7 +62,7 @@ struct ComponentCellViewModel: Identifiable  {
     var title: String {
         return component.title ?? ""
     }
-      var type: ComponentType {
+    var type: ComponentType {
         return component.type
     }
     var hasBackground: Bool {
@@ -74,16 +71,25 @@ struct ComponentCellViewModel: Identifiable  {
     var items: [CarouselItem]?  {
         return component.items
     }
-    var deeplink: URL?  {
-        makeURL(from: component.deeplink)
+    
+    var linkDestination: LinkDestination {
+        if let deeplink = makeURL(from: component.deeplink) {
+            return .deepLink(deeplink)
+        } else if let weblink = makeURL(from: component.weblink) {
+            return .webLink(weblink)
+        } else {
+            return .unknown
+        }
     }
-    var weblink: URL?  {
-        makeURL(from: component.weblink)
+    
+    var imageUrl: URL? {
+        guard let urlString = component.image?.mobile else { return nil }
+        return makeURL(from: urlString)
     }
     
     private func makeURL(from string: String?) -> URL? {
-            guard let string = string else { return nil }
-            return URL(string: string)
+        guard let string = string else { return nil }
+        return URL(string: string)
     }
     
 }

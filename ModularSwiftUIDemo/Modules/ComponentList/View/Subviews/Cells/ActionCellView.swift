@@ -8,7 +8,29 @@ import SwiftUI
 
 struct ActionCellView: View {
     let title: String
+    let imageUrl: URL?
+    let onTap: () -> Void
+    
+    
     var body: some View {
-        Text(title)
+        HStack {
+            AsyncImage(url: imageUrl) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                default:
+                    EmptyView()
+                }
+            }
+            Text(title)
+            Spacer()
+            Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+        }.onTapGesture {
+            onTap()
+        }
     }
 }

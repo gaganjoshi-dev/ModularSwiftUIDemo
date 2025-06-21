@@ -10,17 +10,26 @@ import Combine
 struct CarouselCardView: View {
     let item: CarouselItem
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
-
+    
+    @State private var viewSize: CGSize?
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            CarouselImageView(urlString: item.image.mobile)
-            CarouselTitleView(title: item.title)
-            CarouselDescriptionView(description: item.description)
+        VStack(alignment: .center, spacing: 8) {
+            CarouselImageView(urlString: item.image.mobile) { size in
+                print(size)
+                viewSize = size
+            }
+            if let size = viewSize {
+                CarouselTitleView(title: item.title).frame(width: size.width)
+                CarouselDescriptionView(description: item.description).frame(width: size.width)
+            } else {
+                CarouselTitleView(title: item.title)
+                CarouselDescriptionView(description: item.description)
+            }
             if let buttonTitle = item.buttonTitle {
                 CarouselLinkButton(title: buttonTitle, link: item.weblink,navigationPublisher: navigationPublisher)
             }
         }
-        .frame(width: 160)
         .padding()
         .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
@@ -30,32 +39,39 @@ struct CarouselCardView: View {
 
 struct CarouselImageView: View {
     let urlString: String?
-
+    let sizeOfImage: (CGSize) -> Void
+    
     var body: some View {
         AsyncImage(url: URL(string: urlString ?? "")) { phase in
             switch phase {
             case .success(let image):
                 image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
+                    .measureSize { size in
+                        print("✅ Image loaded with size: \(size)")
+                        sizeOfImage(size)
+                    }
+                
             case .failure(_):
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(.gray)
+                
             default:
                 ProgressView()
             }
         }
-        .frame(width: 150, height: 100)
         .clipped()
         .cornerRadius(10)
     }
 }
 
+
 struct CarouselTitleView: View {
     let title: String
-
+    
     var body: some View {
         Text(title)
             .font(.headline)
@@ -65,11 +81,11 @@ struct CarouselTitleView: View {
 
 struct CarouselDescriptionView: View {
     let description: String
-
+    
     var body: some View {
         Text(description)
             .font(.subheadline)
-            .lineLimit(2)
+            .lineLimit(4)
     }
 }
 
@@ -77,16 +93,21 @@ struct CarouselLinkButton: View {
     let title: String
     let link: String
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
-
+    
     var body: some View {
-        Button(title) {
-                navigationPublisher.send(.openURL(link))
+        Button(action: {
+            if let url = URL(string: title) {
+                navigationPublisher.send(.open(.deepLink(url)))
+            }
+        }) {
+            Text(title)
+                .font(.subheadline)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8)
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(12)
         }
-        .font(.caption)
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(5)
+        .padding(.top, 4)
     }
 }

@@ -8,8 +8,15 @@ import SwiftUI
 
 struct HeaderCellView: View {
     let title: String
+    
     var body: some View {
-        Text(title)
-            .font(.headline)
+        HStack {
+            Text(title)
+                .font(.headline)
+                .padding(.vertical, 8)
+            Spacer()
+        }
     }
+    
+    
 }

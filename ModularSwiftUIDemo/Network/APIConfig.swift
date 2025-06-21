@@ -19,11 +19,12 @@ protocol APIConfigProtocol {
 
 struct APIConfig: APIConfigProtocol {
     var apiKey: String? {
-        "7a49485cc31ce633557e5af447e41014a78bd998"
+        ""
     }
-    var apiKeyHeader: String = "X-API-KEY"
-    var baseURL: String = "https://stage-api.target.com"
-    var channel: String = "app"
-    var endpoint: String = "/guest_profile_details/v1/transparency"
-    var fileName: String = "legal_privacy"
+    var apiKeyHeader: String = ""
+    var baseURL: String = ""
+    var channel: String = ""
+    var endpoint: String = ""
+    var fileName: String = ""
 }
+

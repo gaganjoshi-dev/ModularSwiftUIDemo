@@ -27,6 +27,7 @@ struct Component : Decodable {
     let deeplink: String?
     let weblink: String?
     let items: [CarouselItem]?
+    let image: ImageData?
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -35,6 +36,7 @@ struct Component : Decodable {
         case deeplink
         case weblink
         case items
+        case image
     }
 }
 
