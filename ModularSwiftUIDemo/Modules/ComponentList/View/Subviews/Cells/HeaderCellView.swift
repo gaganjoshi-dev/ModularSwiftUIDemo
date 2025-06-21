@@ -9,7 +9,7 @@ import SwiftUI
 struct HeaderCellView: View {
     let title: String
     var body: some View {
-        Text("🟢 \(title)")
+        Text(title)
             .font(.headline)
     }
 }

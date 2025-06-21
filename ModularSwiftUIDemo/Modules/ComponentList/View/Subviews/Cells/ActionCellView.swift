@@ -9,8 +9,6 @@ import SwiftUI
 struct ActionCellView: View {
     let title: String
     var body: some View {
-        Button(title) {
-            // handle action
-        }
+        Text(title)
     }
 }

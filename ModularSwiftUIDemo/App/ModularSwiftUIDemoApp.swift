@@ -16,12 +16,26 @@ struct ModularSwiftUIDemoApp: App {
 
 struct MainScene: Scene {
     @StateObject private var coordinator = LegalPrivacyCoordinator()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
             coordinator.buildView()
         }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            switch newPhase {
+            case .active:
+                print("App is active")
+            case .inactive:
+                print("App is inactive")
+            case .background:
+                print("App is in background")
+            @unknown default:
+                break
+            }
+        }
     }
 }
+
 
 
