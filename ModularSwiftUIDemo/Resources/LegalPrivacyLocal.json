@@ -1,1 +1,174 @@
-
+{
+    "activation_date": "2024-08-25T07:00Z",
+    "version": "1.0",
+    "page": {
+        "title": "Legal & Privacy",
+        "pageName": "My App: legal & privacy",
+        "pageType": "My App",
+        "cmsPageId": "/MyApp/legal&privacy",
+        "cmsPageType": "/MyApp/"
+    },
+    "components": [
+        {
+            "type": "HEADER",
+            "identifier": "ourPrivacyValuesHeader",
+            "title": "Our privacy values",
+            "with_background": true
+        },
+        {
+            "type": "IMAGE_CAROUSEL",
+            "identifier": "imageCarousel",
+            "items": [
+                {
+                    "identifier": "trustAndTransparency",
+                    "title": "Trust & transparency",
+                    "description": "We're dedicated to being open about how we use your personal information, so you can focus on finding the joy in every day.",
+                    "button_title": "Learn more",
+                    "button_content_description": "Learn more about trust & transparency",
+                    "weblink": "https://m.App.com/c/App-privacy-policy/-/N-4sr7p#InfoUsed",
+                    "image": {
+                        "mobile": "CellImage1",
+                        "web": "CellImage1",
+                        "background": "#68CECB"
+                    },
+                    "tracking": {
+                        "location": "My App: Legal and Privacy: Trust & transparency",
+                        "value": "Learn more"
+                    }
+                },
+                {
+                    "identifier": "dataProtection",
+                    "title": "Data protection",
+                    "description": "Backed by industry-leading processes and technology, we're serious about protecting your data and personal information.",
+                    "button_title": "Learn more",
+                    "button_content_description": "Learn more about data protection",
+                    "weblink": "https://security.App.com/",
+                    "image": {
+                        "mobile": "CellImage2",
+                        "web": "CellImage2",
+                        "background": "#D6D6D6"
+                    },
+                    "tracking": {
+                        "location": "My App: Legal and Privacy: Data protection",
+                        "value": "Learn more"
+                    }
+                },
+                {
+                    "identifier": "yourDataYourChoice",
+                    "title": "Your data, your choice",
+                    "description": "Decide how your personal information is used and shared and update those preferences any time.",
+                    "button_title": "Learn more",
+                    "button_content_description": "Learn more about your data, your choice",
+                    "weblink": "https://m.App.com/c/App-privacy-policy/-/N-4sr7p#Choices",
+                    "image": {
+                        "mobile": "CellImage3",
+                        "web": "CellImage3"
+                    },
+                    "tracking": {
+                        "location": "My App: Legal and Privacy: Your data, your choice",
+                        "value": "Learn more"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "HEADER",
+            "identifier": "yourPrivacyRightsAndChoices",
+            "title": "Your privacy rights and choices",
+            "with_background": false
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Submit a request",
+            "identifier": "raiseRequest",
+            "tracking": {
+                "location": "My App: Legal and Privacy: privacy right and choice",
+                "value": "submit a request"
+            },
+            "deeplink": "App://privacy_hub?page=raise_request",
+            "last_in_section": true
+        },
+        {
+            "type": "HEADER",
+            "identifier": "privacyRelatedInformation",
+            "title": "Legal & privacy information",
+            "with_background": false
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Terms",
+            "identifier": "terms",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "Terms"
+            },
+            "weblink": "https://m.App.com/c/terms-conditions/-/N-4sr7l"
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "California Supply Chains Act",
+            "identifier": "californiaSupplyChainsAct",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "California Supply Chains Act"
+            },
+            "weblink": "https://help.App.com/help/subcategoryarticle?childcat=CA+Transparency+in+Supply+Chains+Act&parentcat=Compliance#"
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Privacy",
+            "identifier": "privacy",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "Privacy"
+            },
+            "weblink": "https://m.App.com/c/App-privacy-policy/-/N-4sr7p"
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "CA Privacy Rights",
+            "identifier": "caPrivacyRights",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "CA Privacy Rights"
+            },
+            "weblink": "https://m.App.com/c/App-privacy-policy/-/N-4sr7p#State-Specific%20Privacy%20Information"
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Your Privacy Choices",
+            "identifier": "yourPrivacyChoices",
+            "weblink": "https://m.App.com/guest-privacy",
+            "deeplink": "App://privacy_hub?page=privacy-choices",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "Your privacy choices"
+            },
+            "image": {
+                "mobile": "SwitchImage",
+                "web": "SwitchImage"
+            }
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Interest Based Ads",
+            "identifier": "interestBasedAds",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "Interest based ads"
+            },
+            "weblink": "https://m.App.com/c/interest-based-advertising-privacy-policy/-/N-ztavm"
+        },
+        {
+            "type": "ACTION_CELL",
+            "title": "Health Privacy Policy",
+            "identifier": "healthPrivacyPolicy",
+            "weblink": "https://m.App.com/c/health-policy/-/N-4gc0k",
+            "tracking": {
+                "location": "My App: Legal and Privacy: legal and privacy info",
+                "value": "Health Privacy Policy"
+            },
+            "last_in_section": true
+        }
+    ]
+}

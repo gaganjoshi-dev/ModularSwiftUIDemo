@@ -7,12 +7,16 @@
 import SwiftUI
 
 struct HeaderCellView: View {
+    
+    @EnvironmentObject var theme: ThemeManager
+
     let title: String
     
     var body: some View {
         HStack {
             Text(title)
-                .font(.headline)
+                .font(theme.titleFont)
+                .foregroundStyle(theme.titleColor)
                 .padding(.vertical, 8)
             Spacer()
         }

@@ -19,12 +19,12 @@ protocol APIConfigProtocol {
 
 struct APIConfig: APIConfigProtocol {
     var apiKey: String? {
-        ""
+        "secret"
     }
-    var apiKeyHeader: String = ""
-    var baseURL: String = ""
-    var channel: String = ""
-    var endpoint: String = ""
-    var fileName: String = ""
+    var apiKeyHeader: String = "X-API-KEY"
+    var baseURL: String = "https://stage-api.App.com"
+    var channel: String = "app"
+    var endpoint: String = "/guest_profile_details/v1/transparency"
+    var fileName: String = "legal_privacy"
 }
 

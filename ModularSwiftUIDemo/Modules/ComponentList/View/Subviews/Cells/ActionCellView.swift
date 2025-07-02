@@ -7,6 +7,9 @@
 import SwiftUI
 
 struct ActionCellView: View {
+    
+    @EnvironmentObject var theme: ThemeManager
+    
     let title: String
     let imageUrl: URL?
     let onTap: () -> Void
@@ -21,14 +24,22 @@ struct ActionCellView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40)
+                case .failure:
+                    Image(imageUrl?.absoluteString ?? "")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40)
+                    
                 default:
                     EmptyView()
                 }
             }
             Text(title)
+                .font(theme.detailFont)
+                .foregroundStyle(theme.detailColor)
             Spacer()
             Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
+                .foregroundColor(.gray)
         }.onTapGesture {
             onTap()
         }

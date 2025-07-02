@@ -100,7 +100,7 @@ final class LegalPrivacyCoordinator: ObservableObject, LegalPrivacyCoordinatorPr
                 LegalPrivacyView(
                     viewModel: LegalPrivacyViewModel(
                         componentService: ComponentService(
-                            repository: RemoteRepository()
+                            repository: ComponentRepository()
                         )
                     ),
                     coordinator: self

@@ -8,6 +8,8 @@ import SwiftUI
 import Combine
 
 struct CarouselCardView: View {
+    
+
     let item: CarouselItem
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
     
@@ -54,10 +56,13 @@ struct CarouselImageView: View {
                     }
                 
             case .failure(_):
-                Image(systemName: "photo")
+                Image(urlString ?? "")
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(.gray)
+                    .measureSize { size in
+                        print("✅ Image loaded with size: \(size)")
+                        sizeOfImage(size)
+                    }
                 
             default:
                 ProgressView()
@@ -71,19 +76,24 @@ struct CarouselImageView: View {
 
 struct CarouselTitleView: View {
     let title: String
-    
+    @EnvironmentObject var theme: ThemeManager
+
     var body: some View {
         Text(title)
-            .font(.headline)
+            .font(theme.titleFont)
+            .foregroundStyle(theme.titleColor)
             .lineLimit(1)
     }
 }
 
 struct CarouselDescriptionView: View {
     let description: String
-    
+    @EnvironmentObject var theme: ThemeManager
+
     var body: some View {
         Text(description)
+            .font(theme.detailFont)
+            .foregroundStyle(theme.detailColor)
             .font(.subheadline)
             .lineLimit(4)
     }

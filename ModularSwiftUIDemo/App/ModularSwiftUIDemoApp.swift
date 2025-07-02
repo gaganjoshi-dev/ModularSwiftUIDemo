@@ -17,10 +17,12 @@ struct ModularSwiftUIDemoApp: App {
 struct MainScene: Scene {
     @StateObject private var coordinator = LegalPrivacyCoordinator()
     @Environment(\.scenePhase) var scenePhase
-    
+    @StateObject private var themeManager = ThemeManager()
+
     var body: some Scene {
         WindowGroup {
             coordinator.buildView()
+                .environmentObject(themeManager) // 👈 Inject here
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             switch newPhase {

@@ -5,7 +5,6 @@
 //  Created by gagan joshi on 2025-06-11.
 //
 
-
 struct LegalPrivacyData: Decodable {
     let page: Page
     let components: [Component]

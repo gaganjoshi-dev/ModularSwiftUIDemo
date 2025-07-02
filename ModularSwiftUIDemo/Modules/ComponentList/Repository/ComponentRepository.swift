@@ -24,7 +24,7 @@ final class ComponentRepository: ComponentDataSource {
     
     func fetchComponents() async throws -> LegalPrivacyData {
         do {
-            return try await remoteRepository.fetchComponents()
+            return try await localRepository.fetchComponents()
         } catch let error as ComponentError {
             if case .networkError(let error) = error, error.errorCode == "-1002" {
                 return try await localRepository.fetchComponents()

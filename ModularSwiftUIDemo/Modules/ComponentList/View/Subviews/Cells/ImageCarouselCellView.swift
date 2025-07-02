@@ -9,6 +9,8 @@ import Combine
 
 
 struct ImageCarouselCellView: View {
+    
+
     let items: [CarouselItem]
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
     
