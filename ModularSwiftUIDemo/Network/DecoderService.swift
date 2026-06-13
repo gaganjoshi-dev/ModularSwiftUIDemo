@@ -14,7 +14,9 @@ final class JSONDecoderService : DecoderService  {
     
     func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
         do {
-            return try JSONDecoder().decode(T.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode(T.self, from: data)
         } catch let decodingError as DecodingError {
             let message: String
             switch decodingError {
