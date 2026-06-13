@@ -24,9 +24,9 @@ extension ComponentError: LocalizedError {
         case .missingAPIKey:
             return "API Key Missing"
         case .localDataError(let error):
-            return "Failed to decode JSON: \(error.localizedDescription)"
+            return error.localizedDescription
         case .networkError(let error):
-            return "Failed to decode JSON: \(error.localizedDescription)"
+            return error.localizedDescription
         case .unknown(let error):
             return "Unknown error: \(error.localizedDescription)"
         }

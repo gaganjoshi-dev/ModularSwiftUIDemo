@@ -14,8 +14,28 @@ enum LocalDataError: Error {
     case unknown(Error)
 }
 
+extension LocalDataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .fileNotFound:
+            return "Local content file not found."
+        case .invalidData:
+            return "Local content could not be read."
+        case .decodingFailed:
+            return "Failed to parse local content."
+        case .unknown(let error):
+            return error.localizedDescription
+        }
+    }
+}
 
 final class LocalRepository: ComponentDataSource {
+
+    private let decoderService: DecoderService
+
+    init(decoderService: DecoderService = JSONDecoderService()) {
+        self.decoderService = decoderService
+    }
 
     func fetchComponents() async throws -> LegalPrivacyData {
         guard let url = Bundle.main.url(forResource: "LegalPrivacyLocal", withExtension: "json") else {
@@ -30,14 +50,11 @@ final class LocalRepository: ComponentDataSource {
         }
 
         do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(LegalPrivacyData.self, from: data)
-        } catch let decodingError as DecodingError {
-            throw LocalDataError.decodingFailed(decodingError)
+            return try decoderService.decode(LegalPrivacyData.self, from: data)
+        } catch let error as NetworkError {
+            throw LocalDataError.decodingFailed(error)
         } catch {
             throw LocalDataError.unknown(error)
         }
     }
-
 }
