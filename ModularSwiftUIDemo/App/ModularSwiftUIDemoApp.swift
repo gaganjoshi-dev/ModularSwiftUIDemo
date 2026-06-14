@@ -10,34 +10,31 @@ import SwiftUI
 @main
 struct ModularSwiftUIDemoApp: App {
     var body: some Scene {
-            MainScene()
+        MainScene()
     }
 }
 
 struct MainScene: Scene {
-    @StateObject private var coordinator = LegalPrivacyCoordinator()
-    @Environment(\.scenePhase) var scenePhase
+    @StateObject private var coordinator = AppDependencies.makeCoordinator()
     @StateObject private var themeManager = ThemeManager()
+    @Environment(\.scenePhase) var scenePhase
 
     var body: some Scene {
         WindowGroup {
             coordinator.buildView()
-                .environmentObject(themeManager) // 👈 Inject here
+                .environmentObject(themeManager)
         }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
+        .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
             case .active:
-                print("App is active")
+                AppLogger.lifecycle.debug("App became active")
             case .inactive:
-                print("App is inactive")
+                AppLogger.lifecycle.debug("App became inactive")
             case .background:
-                print("App is in background")
+                AppLogger.lifecycle.debug("App entered background")
             @unknown default:
                 break
             }
         }
     }
 }
-
-
-

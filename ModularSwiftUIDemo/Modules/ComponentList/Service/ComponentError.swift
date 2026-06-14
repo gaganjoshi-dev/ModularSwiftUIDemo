@@ -16,6 +16,32 @@ enum ComponentError: Error {
     case unknown(Error)
 }
 
+enum LocalFallbackReason: String {
+    case connectivityFailure
+    case invalidRemoteJSON
+}
+
+extension ComponentError {
+
+    var shouldFallbackToLocalContent: Bool {
+        switch self {
+        case .networkError(let error):
+            return error.shouldFallbackToLocalContent
+        case .invalidURL, .missingAPIKey, .localDataError, .unknown:
+            return false
+        }
+    }
+
+    var fallbackReason: LocalFallbackReason? {
+        switch self {
+        case .networkError(let error):
+            return error.fallbackReason
+        case .invalidURL, .missingAPIKey, .localDataError, .unknown:
+            return nil
+        }
+    }
+}
+
 extension ComponentError: LocalizedError {
     var errorDescription: String? {
         switch self {

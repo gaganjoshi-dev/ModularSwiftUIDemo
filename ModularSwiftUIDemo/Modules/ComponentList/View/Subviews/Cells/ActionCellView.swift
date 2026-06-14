@@ -7,14 +7,13 @@
 import SwiftUI
 
 struct ActionCellView: View {
-    
+
     @EnvironmentObject var theme: ThemeManager
-    
+
     let title: String
     let imageUrl: URL?
     let onTap: () -> Void
-    
-    
+
     var body: some View {
         HStack {
             AsyncImage(url: imageUrl) { phase in
@@ -29,7 +28,6 @@ struct ActionCellView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40)
-                    
                 default:
                     EmptyView()
                 }
@@ -40,7 +38,8 @@ struct ActionCellView: View {
             Spacer()
             Image(systemName: "chevron.right")
                 .foregroundColor(.gray)
-        }.onTapGesture {
+        }
+        .onTapGesture {
             onTap()
         }
     }

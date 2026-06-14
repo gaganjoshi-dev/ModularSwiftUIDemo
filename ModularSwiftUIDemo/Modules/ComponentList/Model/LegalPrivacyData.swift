@@ -20,6 +20,7 @@ struct Page: Decodable {
 }
 
 struct Component : Decodable {
+    let identifier: String?
     let type: ComponentType
     let title : String?
     let withBackground: Bool?
@@ -29,6 +30,7 @@ struct Component : Decodable {
     let image: ImageData?
     
     enum CodingKeys: String, CodingKey {
+        case identifier
         case type
         case title
         case withBackground = "with_background"

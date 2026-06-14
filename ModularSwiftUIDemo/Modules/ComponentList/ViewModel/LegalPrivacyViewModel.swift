@@ -1,6 +1,6 @@
 //
-//  Untitled.swift
-//  LegalPrivacyViewModel
+//  LegalPrivacyViewModel.swift
+//  ModularSwiftUIDemo
 //
 //  Created by gagan joshi on 2025-06-11.
 //
@@ -19,59 +19,61 @@ enum ComponentListState {
     case failure(String)
 }
 
-
 final class LegalPrivacyViewModel: ObservableObject {
     private let componentService: ComponentServiceProtocol
     @Published private(set) var state: ComponentListState = .loading
+
     init(componentService: ComponentServiceProtocol) {
         self.componentService = componentService
     }
 
     @MainActor
     func fetchLegalPrivacyData() async {
+        AppLogger.repository.debug("ViewModel fetch started")
         state = .loading
         do {
             let result = try await componentService.getComponentPageData()
-            let viewModels = result.components.map { ComponentCellViewModel(component: $0) }
-            state = .loaded(title: result.page.title, components: viewModels)
+            let viewModels = result.data.components.map { ComponentCellViewModel(component: $0) }
+            state = .loaded(
+                title: result.data.page.title,
+                components: viewModels
+            )
+            AppLogger.repository.debug(
+                "ViewModel fetch succeeded source=\(result.source.rawValue, privacy: .public) componentCount=\(viewModels.count)"
+            )
         } catch {
             state = .failure(error.localizedDescription)
+            AppLogger.repository.error("ViewModel fetch failed error=\(error.localizedDescription, privacy: .public)")
         }
     }
 }
 
+struct ComponentCellViewModel: Identifiable {
 
-protocol ComponentCellViewModelProtocol {
-    var title: String { get }
-    var type: ComponentType { get }
-    var hasBackground: Bool { get }
-    var items: [CarouselItem]? { get }
-    var deeplink: URL? { get }
-    var weblink: URL? { get }
-}
+    let id: String
+    private let component: Component
 
-struct ComponentCellViewModel: Identifiable  {
-    
-    let id = UUID()
-    
-    private let component : Component
-    
     init(component: Component) {
         self.component = component
+        self.id = component.identifier ?? UUID().uuidString
     }
+
     var title: String {
-        return component.title ?? ""
+        component.title ?? ""
     }
+
     var type: ComponentType {
-        return component.type
+        component.type
     }
+
     var hasBackground: Bool {
-        return component.withBackground ?? false
+        component.withBackground ?? false
     }
-    var items: [CarouselItem]?  {
-        return component.items
+
+    var items: [CarouselItem]? {
+        component.items
     }
-    
+
     var linkDestination: LinkDestination {
         if let deeplink = makeURL(from: component.deeplink) {
             return .deepLink(deeplink)
@@ -81,15 +83,14 @@ struct ComponentCellViewModel: Identifiable  {
             return .unknown
         }
     }
-    
+
     var imageUrl: URL? {
         guard let urlString = component.image?.mobile else { return nil }
         return makeURL(from: urlString)
     }
-    
+
     private func makeURL(from string: String?) -> URL? {
-        guard let string = string else { return nil }
+        guard let string else { return nil }
         return URL(string: string)
     }
-    
 }

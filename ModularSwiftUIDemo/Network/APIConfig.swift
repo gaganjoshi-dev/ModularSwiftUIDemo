@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol APIConfigProtocol {
     var baseURL: String { get }
     var endpoint: String { get }
@@ -15,6 +14,7 @@ protocol APIConfigProtocol {
     var fileName: String { get }
     var apiKey: String? { get }
     var apiKeyHeader: String { get }
+    var requestTimeout: TimeInterval { get }
 }
 
 struct APIConfig: APIConfigProtocol {
@@ -26,5 +26,5 @@ struct APIConfig: APIConfigProtocol {
     var channel: String = "app"
     var endpoint: String = "/guest_profile_details/v1/transparency"
     var fileName: String = "legal_privacy"
+    var requestTimeout: TimeInterval = 30
 }
-

@@ -3,4 +3,112 @@
    uuid = "60CDCBF1-5DF5-47BD-BAF2-CC00404B7AF8"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3E81872-73AF-46EE-880A-0428FD7EBAE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModularSwiftUIDemo/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "executeRequest(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D4ACBFA-5C8F-49C9-9503-B76AFD9BC52B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "buildRequest()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62671341-C504-4E4F-855E-2EF3D7665750"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "fetchComponents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62671341-C504-4E4F-855E-2EF3D7665750 - 491c3c60bc06e827"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ModularSwiftUIDemo.RemoteRepository.fetchComponents() async throws -&gt; ModularSwiftUIDemo.LegalPrivacyData"
+                  moduleName = "ModularSwiftUIDemo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaganjoshi/Documents/Projects/ModularSwiftUIDemo/ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+               <Location
+                  uuid = "62671341-C504-4E4F-855E-2EF3D7665750 - 6094f32c68b8034b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for ModularSwiftUIDemo.RemoteRepository.fetchComponents() async throws -&gt; ModularSwiftUIDemo.LegalPrivacyData"
+                  moduleName = "ModularSwiftUIDemo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaganjoshi/Documents/Projects/ModularSwiftUIDemo/ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+               <Location
+                  uuid = "62671341-C504-4E4F-855E-2EF3D7665750 - 698cecf1d279ac25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ModularSwiftUIDemo.RemoteRepository.fetchComponents() async throws -&gt; ModularSwiftUIDemo.LegalPrivacyData"
+                  moduleName = "ModularSwiftUIDemo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaganjoshi/Documents/Projects/ModularSwiftUIDemo/ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+               <Location
+                  uuid = "62671341-C504-4E4F-855E-2EF3D7665750 - 99c484ba7b46ce22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for ModularSwiftUIDemo.RemoteRepository.fetchComponents() async throws -&gt; ModularSwiftUIDemo.LegalPrivacyData"
+                  moduleName = "ModularSwiftUIDemo.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaganjoshi/Documents/Projects/ModularSwiftUIDemo/ModularSwiftUIDemo/Modules/ComponentList/Repository/RemoteRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

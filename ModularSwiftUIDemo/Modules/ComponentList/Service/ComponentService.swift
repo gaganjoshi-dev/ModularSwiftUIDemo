@@ -7,17 +7,17 @@
 import Foundation
 
 protocol ComponentServiceProtocol {
-    func getComponentPageData() async throws -> LegalPrivacyData
+    func getComponentPageData() async throws -> ComponentPageResult
 }
 
 final class ComponentService: ComponentServiceProtocol {
-    private let repository: ComponentDataSource
+    private let repository: ComponentRepositoryProtocol
 
-    init(repository: ComponentDataSource) {
+    init(repository: ComponentRepositoryProtocol = ComponentRepository()) {
         self.repository = repository
     }
 
-    func getComponentPageData() async throws -> LegalPrivacyData {
-        return try await repository.fetchComponents()
+    func getComponentPageData() async throws -> ComponentPageResult {
+        try await repository.fetchPage()
     }
 }

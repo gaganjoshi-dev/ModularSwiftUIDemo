@@ -52,6 +52,7 @@ final class RemoteRepository: ComponentDataSource {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.timeoutInterval = apiConfig.requestTimeout
         request.setValue(apiKey, forHTTPHeaderField: apiConfig.apiKeyHeader)
         return request
     }

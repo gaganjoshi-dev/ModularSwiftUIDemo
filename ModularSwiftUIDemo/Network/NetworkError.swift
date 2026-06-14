@@ -12,6 +12,49 @@ enum NetworkError: Error {
     case clientError(Error)
 }
 
+extension NetworkError {
+
+    /// Remote failures that should serve bundled local content instead of surfacing an error.
+    var shouldFallbackToLocalContent: Bool {
+        switch self {
+        case .decodingFailed:
+            return true
+        case .clientError(let error):
+            return Self.isConnectivityFailure(error)
+        case .invalidResponse:
+            return false
+        }
+    }
+
+    var fallbackReason: LocalFallbackReason? {
+        switch self {
+        case .decodingFailed:
+            return .invalidRemoteJSON
+        case .clientError(let error) where Self.isConnectivityFailure(error):
+            return .connectivityFailure
+        case .clientError, .invalidResponse:
+            return nil
+        }
+    }
+
+    private static func isConnectivityFailure(_ error: Error) -> Bool {
+        guard let urlError = error as? URLError else { return false }
+        switch urlError.code {
+        case .notConnectedToInternet,
+             .networkConnectionLost,
+             .timedOut,
+             .cannotConnectToHost,
+             .cannotFindHost,
+             .dnsLookupFailed,
+             .dataNotAllowed,
+             .internationalRoamingOff:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 extension NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
