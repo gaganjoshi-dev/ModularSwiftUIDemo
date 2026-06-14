@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct MeasureSizeModifier: ViewModifier {
     let callback: (CGSize) -> Void
 

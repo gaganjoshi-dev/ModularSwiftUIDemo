@@ -9,15 +9,14 @@ import SwiftUI
 import Combine
 
 struct LegalPrivacyView: View {
-    @StateObject private var viewModel: LegalPrivacyViewModel
+    @ObservedObject var viewModel: LegalPrivacyViewModel
     private let coordinator: LegalPrivacyCoordinator
 
     init(viewModel: LegalPrivacyViewModel, coordinator: LegalPrivacyCoordinator) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
         self.coordinator = coordinator
-        
     }
-    
+
     var body: some View {
         content
             .navigationTitle(navigationTitle)
@@ -25,7 +24,7 @@ struct LegalPrivacyView: View {
                 await viewModel.fetchLegalPrivacyData()
             }
     }
-    // MARK: - Computed Content
+
     @ViewBuilder
     private var content: some View {
         switch viewModel.state {
@@ -33,11 +32,11 @@ struct LegalPrivacyView: View {
             ComponentLoadingView()
         case .failure(let message):
             ComponentErrorView(message: message)
-        case .loaded(_ , let components):
+        case .loaded(_, let components):
             ComponentListView(components: components, navigationPublisher: coordinator.navigationPublisher)
         }
     }
-    
+
     private var navigationTitle: String {
         switch viewModel.state {
         case .loaded(let title, _):
@@ -49,5 +48,3 @@ struct LegalPrivacyView: View {
         }
     }
 }
-
-

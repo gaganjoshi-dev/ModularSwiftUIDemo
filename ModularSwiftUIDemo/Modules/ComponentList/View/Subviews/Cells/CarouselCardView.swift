@@ -8,17 +8,15 @@ import SwiftUI
 import Combine
 
 struct CarouselCardView: View {
-    
 
     let item: CarouselItem
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
-    
+
     @State private var viewSize: CGSize?
-    
+
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             CarouselImageView(urlString: item.image.mobile) { size in
-                print(size)
                 viewSize = size
             }
             if let size = viewSize {
@@ -29,7 +27,7 @@ struct CarouselCardView: View {
                 CarouselDescriptionView(description: item.description)
             }
             if let buttonTitle = item.buttonTitle {
-                CarouselLinkButton(title: buttonTitle, link: item.weblink,navigationPublisher: navigationPublisher)
+                CarouselLinkButton(title: buttonTitle, link: item.weblink, navigationPublisher: navigationPublisher)
             }
         }
         .padding()
@@ -42,7 +40,7 @@ struct CarouselCardView: View {
 struct CarouselImageView: View {
     let urlString: String?
     let sizeOfImage: (CGSize) -> Void
-    
+
     var body: some View {
         AsyncImage(url: URL(string: urlString ?? "")) { phase in
             switch phase {
@@ -51,19 +49,17 @@ struct CarouselImageView: View {
                     .resizable()
                     .scaledToFit()
                     .measureSize { size in
-                        print("✅ Image loaded with size: \(size)")
                         sizeOfImage(size)
                     }
-                
+
             case .failure(_):
                 Image(urlString ?? "")
                     .resizable()
                     .scaledToFit()
                     .measureSize { size in
-                        print("✅ Image loaded with size: \(size)")
                         sizeOfImage(size)
                     }
-                
+
             default:
                 ProgressView()
             }
@@ -72,7 +68,6 @@ struct CarouselImageView: View {
         .cornerRadius(10)
     }
 }
-
 
 struct CarouselTitleView: View {
     let title: String
@@ -103,11 +98,11 @@ struct CarouselLinkButton: View {
     let title: String
     let link: String
     let navigationPublisher: PassthroughSubject<LegalPrivacyCoordinator.NavigationEvent, Never>
-    
+
     var body: some View {
         Button(action: {
-            if let url = URL(string: title) {
-                navigationPublisher.send(.open(.deepLink(url)))
+            if let url = URL(string: link) {
+                navigationPublisher.send(.open(.webLink(url)))
             }
         }) {
             Text(title)

@@ -17,7 +17,7 @@ struct ComponentListView: View {
             case .header:
                 HeaderCellView(title: component.title).background(component.hasBackground ? Color(.systemGray6) : Color.clear)
             case .actionCell:
-                ActionCellView(title: component.title,imageUrl: component.imageUrl) {
+                ActionCellView(title: component.title, imageUrl: component.imageUrl) {
                         navigationPublisher.send(.open(component.linkDestination))
                 }
 
@@ -32,4 +32,3 @@ struct ComponentListView: View {
         .listStyle(.plain)
     }
 }
-
